@@ -15,11 +15,14 @@ internal class GameplayCameraPatches {
     [HarmonyPatch(nameof(GameplayCamera.UpdateCamera))]
     [HarmonyPriority(Priority.Low)]
     private static void Postfix_UpdateGameplayCamera(GameplayCamera __instance) {
-        Vector3 zoomVector = __instance.transform.forward * -DynamicZoom.UpdateZoomLevel();
-        __instance.realTf.Translate(zoomVector, Space.World);
+        if (DynamicZoomConfig.enableDynamicZoom.Value) {
+            Vector3 zoomVector = __instance.transform.forward * -DynamicZoom.UpdateZoomLevel();
+            zoomVector += new Vector3(DynamicZoomConfig.xOffset.Value, DynamicZoomConfig.yOffset.Value, 0); 
+            __instance.realTf.Translate(zoomVector, Space.World);
 
-        DynamicZoom.SetDrag(__instance); 
-        __instance.defaultCamHeight = DynamicZoomConfig.defaultCameraHeight.Value;
+            DynamicZoom.SetDrag(__instance); 
+            __instance.defaultCamHeight = DynamicZoomConfig.defaultCameraHeight.Value;
+        }
     }
 }
 

@@ -32,6 +32,7 @@ public class DynamicZoom : BaseUnityPlugin
     public static bool hasCamUtils = false;
 
     public static float currentZoom;
+    public static float currentDrag;
     private static AnimationCurve zoomCurve; 
     private static float zoomTime; 
     
@@ -57,8 +58,12 @@ public class DynamicZoom : BaseUnityPlugin
     public static void SetDrag(GameplayCamera gcam) {
         if (!DynamicZoomConfig.overrideDrag.Value) { return; }
         //gcam.cam.fieldOfView = DynamicZoomConfig.FOV.Value;
-		gcam.dragDistanceDefault = DynamicZoomConfig.dragDistanceDefault.Value;
-		gcam.dragDistanceMax = DynamicZoomConfig.dragDistanceMax.Value;
+        if (DynamicZoomConfig.enableDynamicDrag.Value) {
+            gcam.dragDistanceDefault = gcam.dragDistanceMax = currentDrag; 
+        } else {
+            gcam.dragDistanceDefault = DynamicZoomConfig.dragDistanceDefault.Value;
+            gcam.dragDistanceMax = DynamicZoomConfig.dragDistanceMax.Value;
+        }
     }
 
     public static float UpdateZoomLevel() {
@@ -73,6 +78,7 @@ public class DynamicZoom : BaseUnityPlugin
 
         float trueTime = zoomCurve.Evaluate(zoomTime);
         currentZoom = Mathf.Lerp(DynamicZoomConfig.minZoom.Value, DynamicZoomConfig.maxZoom.Value, trueTime); 
+        currentDrag = Mathf.Lerp(DynamicZoomConfig.minDDrag.Value, DynamicZoomConfig.maxDDrag.Value, trueTime);
         return currentZoom;
     }
 }
