@@ -36,12 +36,12 @@ internal class DynamicZoomConfig {
     public static void BindSettings(ConfigFile Config) {
         /* 1. Settings */
         useTotalSpeed = Config.Bind("1. Settings", "Use Total Speed", false, "Whether to use the player's forward speed or total speed to calculate camera distance.");
-        maxPlayerSpeed = Config.Bind("1. Settings", "Max Player Speed (KM/H)", 100.0f, "The speed the player has to go to reach maximum camera distance.");
+        maxPlayerSpeed = Config.Bind("1. Settings", "Max Player Speed (KM/H)", 200.0f, "The speed the player has to go to reach maximum camera distance.");
 
         /* 2. Zoom */
         enableDynamicZoom = Config.Bind("2. Dynamic Zoom", "Enable Dynamic Zoom", true, "Adjust how far the camera is from the player relative to their speed.");
         minZoom = Config.Bind("2. Dynamic Zoom", "Minimum Camera Distance", 0f, "Minimum camera distance, relative to the game's default camera distance. Higher values are farther away, negative values are close-up.");
-        maxZoom = Config.Bind("2. Dynamic Zoom", "Maximum Camera Distance", 1f, "Maximum camera distance, relative to the game's default camera distance. Higher values are farther away, negative values are close-up.");
+        maxZoom = Config.Bind("2. Dynamic Zoom", "Maximum Camera Distance", 3f, "Maximum camera distance, relative to the game's default camera distance. Higher values are farther away, negative values are close-up.");
         zoomAdjustmentSpeed = Config.Bind("2. Dynamic Zoom", "Zoom Adjustment Speed", 1.0f);
         zoomEaseIn = Config.Bind("2. Dynamic Zoom", "Zoom Curve Ease In", 0.0f); 
         zoomEaseIn.SettingChanged += UpdateSettingsEvent;
@@ -51,10 +51,10 @@ internal class DynamicZoomConfig {
         /* 3. Drag */
         overrideDrag = Config.Bind("3. Dynamic Drag", "Apply Camera Drag Settings", true, "Overrides SaveStatesAndCamUtils' camera drag settings. If set to false, all drag settings below (both vanilla and dynamic drag) will be disabled, and (if present) the SaveStatesAndCamUtils drag settings will apply instead.");
         enableDynamicDrag = Config.Bind("3. Dynamic Drag", "Enable Dynamic Camera Drag", false, "Change camera drag values along with dynamic zoom. Will match the zoom's adjustment curve and speed. Can be used along with dynamic zoom or standalone.");
-        minDDrag = Config.Bind("3. Dynamic Drag", "(Dynamic) Minimum Camera Drag", 3f, "Minimum camera drag. Higher values lead to the camera dragging further behind, while lower values will stay closer to the player.");
-        maxDDrag = Config.Bind("3. Dynamic Drag", "(Dynamic) Maximum Camera Drag", 5f, "Maximum camera drag. Higher values lead to the camera dragging further behind, while lower values will stay closer to the player.");
-        dragDistanceDefault = Config.Bind("3. Dynamic Drag", "(Vanilla) Default Drag Distance", 2.9f, "Will not apply if dynamic drag is enabled.");
-        dragDistanceMax = Config.Bind("3. Dynamic Drag", "(Vanilla) Maximum Drag Distance", 3.55f, "Will not apply if dynamic drag is enabled.");
+        minDDrag = Config.Bind("3. Dynamic Drag", "(Dynamic) Minimum Drag Distance", 3f, "Minimum camera drag. Higher values lead to the camera dragging further behind, while lower values will stay closer to the player.");
+        maxDDrag = Config.Bind("3. Dynamic Drag", "(Dynamic) Maximum Drag Distance", 5f, "Maximum camera drag. Higher values lead to the camera dragging further behind, while lower values will stay closer to the player.");
+        dragDistanceDefault = Config.Bind("3. Dynamic Drag", "(Vanilla) Default Drag Distance", 2.9f, "Overrides SaveStatesAndCamUtils. Will not apply if dynamic drag is enabled.");
+        dragDistanceMax = Config.Bind("3. Dynamic Drag", "(Vanilla) Maximum Drag Distance", 3.55f, "Overrides SaveStatesAndCamUtils. Will not apply if dynamic drag is enabled.");
 
         /* 4. Misc */
         xOffset = Config.Bind("4. Misc.", "Camera X Offset", 0.0f);
