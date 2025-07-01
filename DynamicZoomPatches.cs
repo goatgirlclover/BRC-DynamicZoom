@@ -15,14 +15,26 @@ internal class GameplayCameraPatches {
     [HarmonyPatch(nameof(GameplayCamera.UpdateCamera))]
     [HarmonyPriority(Priority.Low)]
     private static void Postfix_UpdateGameplayCamera(GameplayCamera __instance) {
+        Vector3 newPosition = __instance.realTf.position;
+        Vector3 originalPosition = __instance.realTf.position;
+
         Vector3 zoomVector = __instance.transform.forward * -DynamicZoom.UpdateZoomLevel();
         if (DynamicZoomConfig.enableDynamicZoom.Value) {
-            __instance.realTf.Translate(zoomVector, Space.World);
+            newPosition += zoomVector; //__instance.realTf.Translate(zoomVector, Space.World);
         }
 
         Vector3 offsetVector = new Vector3(DynamicZoomConfig.xOffset.Value, DynamicZoomConfig.yOffset.Value, 0); 
-        __instance.realTf.Translate(offsetVector, Space.World);
+        newPosition += offsetVector; //__instance.realTf.Translate(offsetVector, Space.World);
         
+        if (!DynamicZoomConfig.ignoreObstructions.Value) {
+            bool wasObstructed = __instance.cameraMode.wasObstructed;
+            bool lerpDefaultDistance = __instance.cameraMode.lerpDefaultDistance;
+            newPosition = (__instance.cameraMode as CameraMode).HandleObstructions(newPosition); 
+            __instance.cameraMode.wasObstructed = wasObstructed;
+            __instance.cameraMode.lerpDefaultDistance = lerpDefaultDistance;
+        }
+        
+        __instance.realTf.position = newPosition;
         DynamicZoom.SetDrag(__instance); 
         __instance.defaultCamHeight = DynamicZoomConfig.defaultCameraHeight.Value;
     }

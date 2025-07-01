@@ -12,6 +12,7 @@ namespace DynamicZoom;
 internal class DynamicZoomConfig {
     public static ConfigEntry<bool> useTotalSpeed;
     public static ConfigEntry<float> maxPlayerSpeed;
+    public static ConfigEntry<bool> ignoreObstructions;
 
     public static ConfigEntry<bool> enableDynamicZoom;
     public static ConfigEntry<float> minZoom;
@@ -37,6 +38,7 @@ internal class DynamicZoomConfig {
         /* 1. Settings */
         useTotalSpeed = Config.Bind("1. Settings", "Use Total Speed", false, "Whether to use the player's forward speed or total speed to calculate camera distance.");
         maxPlayerSpeed = Config.Bind("1. Settings", "Max Player Speed (KM/H)", 200.0f, "The speed the player has to go to reach maximum camera distance.");
+        ignoreObstructions = Config.Bind("1. Settings", "Ignore Obstructions", false, "Whether to ignore any walls the camera would typically collide with when applying dynamic zoom.");
 
         /* 2. Zoom */
         enableDynamicZoom = Config.Bind("2. Dynamic Zoom", "Enable Dynamic Zoom", true, "Adjust how far the camera is from the player relative to their speed.");

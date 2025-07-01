@@ -19,7 +19,7 @@ public class DynamicZoom : BaseUnityPlugin
 {
     public const string PluginName = "DynamicZoom";
     public const string PluginGUID = "goatgirl.DynamicZoom";
-    public const string PluginVersion = "1.0.0";
+    public const string PluginVersion = "1.0.1";
 
     internal static Harmony Harmony = new Harmony(PluginGUID);
     public static DynamicZoom Instance { get; private set; }
