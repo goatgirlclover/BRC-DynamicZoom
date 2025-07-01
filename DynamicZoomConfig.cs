@@ -22,10 +22,7 @@ internal class DynamicZoomConfig {
     public static ConfigEntry<float> dragDistanceDefault;
     public static ConfigEntry<float> dragDistanceMax;
 
-    public static ConfigEntry<bool> disableAutoCam;
     public static ConfigEntry<float> defaultCameraHeight;
-    //public static ConfigEntry<float> lookAngleLowest;
-    //public static ConfigEntry<float> lookAngleHighest;
 
     public static void BindSettings(ConfigFile Config) {
         /* 1. Settings */
@@ -49,9 +46,7 @@ internal class DynamicZoomConfig {
 
         /* 4. Misc Tweaks */
         /* Useful camera variables that aren't situational */
-        disableAutoCam = Config.Bind("4. Misc. Tweaks", "Disable Auto Camera", false); // mouseOrbitDoneDelay = float.PositiveInfinity; 
         defaultCameraHeight = Config.Bind("4. Misc. Tweaks", "Default Camera Height", 2f, "2 is vanilla");
-        
 
         /* 4. Misc. Tweaks (not yet implemented) *
         lookAngleLowest = Config.Bind("4. Misc. Tweaks", "Look Angle Lowest", -45f); 

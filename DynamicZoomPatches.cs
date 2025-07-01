@@ -20,24 +20,6 @@ internal class GameplayCameraPatches {
 
         DynamicZoom.SetDrag(__instance); 
         __instance.defaultCamHeight = DynamicZoomConfig.defaultCameraHeight.Value;
-        if (DynamicZoomConfig.disableAutoCam.Value) { 
-            __instance.mouseOrbitDoneDelay = float.PositiveInfinity; 
-            __instance.orbitFadeDuration = float.PositiveInfinity;
-        } else {
-            __instance.mouseOrbitDoneDelay = 2f; 
-            __instance.orbitFadeDuration = 5f;
-        }
-    }
-}
-
-[HarmonyPatch(typeof(CameraMode))]
-internal class CameraModePatches {
-    [HarmonyPostfix]
-    [HarmonyPatch(nameof(CameraMode.HandleCamInput))]
-    private static void Postfix_HandleCamModeInput(CameraMode __instance) {
-        if (DynamicZoomConfig.disableAutoCam.Value) { 
-            __instance.lastOrbitTimer = 0f; 
-        }
     }
 }
 
