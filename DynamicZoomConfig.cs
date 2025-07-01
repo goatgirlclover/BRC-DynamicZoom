@@ -43,7 +43,7 @@ internal class DynamicZoomConfig {
         minZoom = Config.Bind("2. Dynamic Zoom", "Minimum Camera Distance", 0f, "Minimum camera distance, relative to the game's default camera distance. Higher values are farther away, negative values are close-up.");
         maxZoom = Config.Bind("2. Dynamic Zoom", "Maximum Camera Distance", 3f, "Maximum camera distance, relative to the game's default camera distance. Higher values are farther away, negative values are close-up.");
         zoomAdjustmentSpeed = Config.Bind("2. Dynamic Zoom", "Zoom Adjustment Speed", 1.0f);
-        zoomEaseIn = Config.Bind("2. Dynamic Zoom", "Zoom Curve Ease In", 0.0f); 
+        zoomEaseIn = Config.Bind("2. Dynamic Zoom", "Zoom Curve Ease In", 2.0f); 
         zoomEaseIn.SettingChanged += UpdateSettingsEvent;
         zoomEaseOut = Config.Bind("2. Dynamic Zoom", "Zoom Curve Ease Out", 0.0f); 
         zoomEaseOut.SettingChanged += UpdateSettingsEvent;
