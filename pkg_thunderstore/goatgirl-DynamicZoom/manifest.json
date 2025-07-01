@@ -1,0 +1,10 @@
+{
+    "name":"DynamicZoom",
+    "version_number":"1.0.0",
+    "description":"Adjust camera zoom and drag according to player velocity.",
+    "website_url":"https://github.com/goatgirlclover/BRC-DynamicZoom",
+
+    "dependencies":["BepInEx-BepInExPack-5.4.2100"],
+    "incompatibilities":[],
+    "optionalDependencies":[]
+}
