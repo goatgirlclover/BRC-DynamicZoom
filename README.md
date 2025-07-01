@@ -1,7 +1,7 @@
 <p align="center"> <img src="icon.png" alt="DynamicZoom icon" width="200"/> </p> 
 <h1> <p align="center" > DynamicZoom </p> </h1> 
 
- For more information or release downloads, [check the Thunderstore page.](https://thunderstore.io/c/bomb-rush-cyberfunk/p/goatgirl/MusicCurator)
+ For more information or release downloads, [check the Thunderstore page.](https://thunderstore.io/c/bomb-rush-cyberfunk/p/goatgirl/DynamicZoom)
 ## Features
 - **Dynamic Zoom**: Impacts the distance from the camera to the player
     - Forces a consistent distance at all angles
