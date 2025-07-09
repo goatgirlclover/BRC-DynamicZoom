@@ -32,6 +32,7 @@ public class DynamicZoom : BaseUnityPlugin
 
     public static bool hasCamUtils = false;
     public static bool hasBRCamera = false;
+    public static bool hasReplayMod = false; 
 
     public static float currentZoom;
     public static float currentDrag;
@@ -45,6 +46,7 @@ public class DynamicZoom : BaseUnityPlugin
         foreach (var plugin in BepInEx.Bootstrap.Chainloader.PluginInfos) { 
             if (plugin.Value.Metadata.GUID.Equals("com.Dragsun.Savestate")) { hasCamUtils = true; }
             if (plugin.Value.Metadata.GUID.Equals("BombRushCamera"))  { hasBRCamera = true; }
+            if (plugin.Value.Metadata.GUID.Equals("com.LazyDuchess.BRC.ReplaySystem")) { hasReplayMod = true; }
         }      
 
         Harmony.PatchAll();

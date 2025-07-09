@@ -7,6 +7,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using ReplaySystem;
+
 namespace DynamicZoom;
 
 [HarmonyPatch(typeof(GameplayCamera))]
@@ -15,9 +17,9 @@ internal class GameplayCameraPatches {
     [HarmonyPatch(nameof(GameplayCamera.UpdateCamera))]
     [HarmonyPriority(Priority.Low)]
     private static void Postfix_UpdateGameplayCamera(GameplayCamera __instance) {
-        if (DynamicZoom.hasBRCamera) {
-            if (BombRushCameraHelper.PluginActive) { return; }
-        }
+        if (DynamicZoom.hasBRCamera) { if (BombRushCameraHelper.PluginActive) { return; } }
+        if (!GameplayCamera.instance.isActiveAndEnabled) { return; }
+        if (DynamicZoom.hasReplayMod) { if (ReplayModHelper.PlayingReplay) { return; } }
         
         Vector3 newPosition = __instance.realTf.position;
         Vector3 originalPosition = __instance.realTf.position;
@@ -53,6 +55,10 @@ internal class DragPatch {
     [HarmonyPatch(typeof(CameraRegisterer), nameof(CameraRegisterer.UpdateCameraFov))]
     [HarmonyPatch(nameof(GameplayCamera.UpdateCamera))]
     private static void DragPostfix() { 
+        if (DynamicZoom.hasBRCamera) { if (BombRushCameraHelper.PluginActive) { return; } }
+        if (!GameplayCamera.instance.isActiveAndEnabled) { return; }
+        if (DynamicZoom.hasReplayMod) { if (ReplayModHelper.PlayingReplay) { return; } }
+
         if (DynamicZoom.hasCamUtils) {
             DynamicZoom.SetDrag(GameplayCamera.instance); 
         }
