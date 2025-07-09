@@ -15,6 +15,10 @@ internal class GameplayCameraPatches {
     [HarmonyPatch(nameof(GameplayCamera.UpdateCamera))]
     [HarmonyPriority(Priority.Low)]
     private static void Postfix_UpdateGameplayCamera(GameplayCamera __instance) {
+        if (DynamicZoom.hasBRCamera) {
+            if (BombRushCameraHelper.PluginActive) { return; }
+        }
+        
         Vector3 newPosition = __instance.realTf.position;
         Vector3 originalPosition = __instance.realTf.position;
 

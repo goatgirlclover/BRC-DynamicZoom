@@ -15,6 +15,7 @@ namespace DynamicZoom;
 [BepInDependency("DynamicCamera", BepInDependency.DependencyFlags.SoftDependency)] // [HarmonyPriority(Priority.Low)]
 [BepInDependency("sgiygas.fastCamera", BepInDependency.DependencyFlags.SoftDependency)] // [HarmonyAfter(["sgiygas.fastCamera"])]
 [BepInDependency("com.Dragsun.Savestate", BepInDependency.DependencyFlags.SoftDependency)] // [HarmonyAfter(["com.Dragsun.Savestate"])]
+[BepInDependency("BombRushCamera", BepInDependency.DependencyFlags.SoftDependency)]
 public class DynamicZoom : BaseUnityPlugin
 {
     public const string PluginName = "DynamicZoom";
@@ -30,6 +31,7 @@ public class DynamicZoom : BaseUnityPlugin
     public static Player player { get { return WorldHandler.instance?.GetCurrentPlayer(); }}
 
     public static bool hasCamUtils = false;
+    public static bool hasBRCamera = false;
 
     public static float currentZoom;
     public static float currentDrag;
@@ -41,7 +43,8 @@ public class DynamicZoom : BaseUnityPlugin
         Log.LogInfo("Plugin DynamicZoom is loaded!");
 
         foreach (var plugin in BepInEx.Bootstrap.Chainloader.PluginInfos) { 
-            if (plugin.Value.Metadata.GUID.Equals("com.Dragsun.Savestate")) { hasCamUtils = true; } 
+            if (plugin.Value.Metadata.GUID.Equals("com.Dragsun.Savestate")) { hasCamUtils = true; }
+            if (plugin.Value.Metadata.GUID.Equals("BombRushCamera"))  { hasBRCamera = true; }
         }      
 
         Harmony.PatchAll();

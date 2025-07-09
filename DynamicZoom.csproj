@@ -30,5 +30,6 @@
   <Reference Include="Assembly-CSharp.dll"><HintPath>lib\Assembly-CSharp.dll</HintPath></Reference>
   <Reference Include="0Harmony.dll"><HintPath>lib\0Harmony.dll</HintPath></Reference>
   <Reference Include="BepInEx.dll"><HintPath>lib\BepInEx.dll</HintPath></Reference>
+  <Reference Include="BombRushCamera.dll"><HintPath>lib\BombRushCamera.dll</HintPath></Reference>
   </ItemGroup>
 </Project>
