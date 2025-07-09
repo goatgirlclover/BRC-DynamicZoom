@@ -1,6 +1,6 @@
 {
     "name":"DynamicZoom",
-    "version_number":"1.0.1",
+    "version_number":"1.0.2",
     "description":"Adjust camera zoom and drag according to player velocity.",
     "website_url":"https://github.com/goatgirlclover/BRC-DynamicZoom",
 
